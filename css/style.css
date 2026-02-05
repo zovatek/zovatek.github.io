@@ -1,0 +1,527 @@
+/**
+ * style.css
+ * ==========================================================================
+ * Custom CSS for Zovatek Website
+ * 
+ * Purpose: Contains all custom styles, animations, font imports, and 
+ * visual styling for the Zovatek landing page.
+ * 
+ * Includes:
+ * - Base resets and typography
+ * - Navigation styles
+ * - Button and card components
+ * - Animations (fade-in, float)
+ * - Responsive utilities
+ * ==========================================================================
+ */
+
+/* ==========================================================================
+   Base Styles & Reset
+   ========================================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #FFFFFF;
+  color: #171717;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Typography Utilities
+   ========================================================================== */
+
+.tracking-tight {
+  letter-spacing: -0.02em;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.04em;
+}
+
+/* ==========================================================================
+   Button Components
+   ========================================================================== */
+
+.btn-primary {
+  background-color: #000000;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00B5E2;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Card Components
+   ========================================================================== */
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Floating Shape Animations
+   ========================================================================== */
+
+.floating-shape {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(0, 181, 226, 0.08);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+.floating-shape-2 {
+  animation-delay: -3s;
+}
+
+.floating-shape-3 {
+  animation-delay: -1.5s;
+}
+
+/* ==========================================================================
+   Navigation Styles
+   ========================================================================== */
+
+.nav-link {
+  position: relative;
+  color: #171717;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #00B5E2;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #050505;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Fade-In Animations
+   ========================================================================== */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+
+/* ==========================================================================
+   Logo Styles
+   ========================================================================== */
+
+.logo-image {
+  height: 32px;
+  width: auto;
+  border: none;
+  outline: none;
+}
+
+/* ==========================================================================
+   Globe Container
+   ========================================================================== */
+
+#globe-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#globe-container canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* Responsive globe sizing */
+@media (max-width: 768px) {
+  #globe-container {
+    margin-top: 2rem;
+  }
+}
+
+/* ==========================================================================
+   Solutions Section Animations
+   ========================================================================== */
+
+/* --- Core Animation Keyframes --- */
+@keyframes type {
+  0% { width: 0; }
+  100% { width: 21ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes slideIn {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes scrollUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+/* --- Web Development: Ghost Typer Animation --- */
+@keyframes typeLoop {
+  0% { width: 0; }
+  40% { width: 21ch; }
+  60% { width: 21ch; }
+  100% { width: 0; }
+}
+
+@keyframes blinkCursor {
+  0%, 100% { border-color: #00C2FF; }
+  50% { border-color: transparent; }
+}
+
+.typing-url {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  border-right: 2px solid #00C2FF;
+  animation: 
+    typeLoop 6s steps(21) infinite,
+    blinkCursor 0.8s step-end infinite;
+}
+
+/* --- Visual Identity: Living Composition Animations --- */
+/* 
+ * LOOP TIMELINE (5s total):
+ * 0.0s - 1.0s : Assembly (staggered entrance)
+ * 1.0s - 4.0s : Hold visible (3 seconds)
+ * 4.0s - 5.0s : Deconstruction (exit)
+ * 5.0s        : Reset & Repeat
+ *
+ * Keyframe math: (delay / 5s) * 100 = start%
+ */
+
+/* Header Bar - Slide from left, exit to left */
+@keyframes headerBarLoop {
+  0% { 
+    transform: translateX(-120%) scaleX(0.3);
+    opacity: 0;
+  }
+  6% {  /* 0.3s in */
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+  80% { /* Hold until 4s */
+    transform: translateX(0) scaleX(1);
+    opacity: 1;
+  }
+  90% { /* Exit by 4.5s */
+    transform: translateX(-120%) scaleX(0.3);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-120%) scaleX(0.3);
+    opacity: 0;
+  }
+}
+
+.header-bar {
+  will-change: transform, opacity;
+  animation: headerBarLoop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Hero Block - Pop from center, shrink out */
+@keyframes heroBlockLoop {
+  0%, 6% { /* Wait 0.3s */
+    transform: scale(0);
+    opacity: 0;
+  }
+  14% { /* Overshoot at 0.7s */
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  18% { /* Settle at 0.9s */
+    transform: scale(1);
+    opacity: 1;
+  }
+  80% { /* Hold */
+    transform: scale(1);
+    opacity: 1;
+  }
+  92% { /* Exit */
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.hero-block {
+  will-change: transform, opacity;
+  transform-origin: center center;
+  animation: heroBlockLoop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Text Line 1 - Slide from right */
+@keyframes textLine1Loop {
+  0%, 10% { /* Wait 0.5s */
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  18% { /* Arrive at 0.9s */
+    transform: translateX(0);
+    opacity: 1;
+  }
+  80% { /* Hold */
+    transform: translateX(0);
+    opacity: 1;
+  }
+  88% { /* Exit */
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.text-line-1 {
+  will-change: transform, opacity;
+  animation: textLine1Loop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Text Line 2 - Slide from right (staggered +0.1s) */
+@keyframes textLine2Loop {
+  0%, 12% { /* Wait 0.6s */
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  20% { /* Arrive at 1.0s */
+    transform: translateX(0);
+    opacity: 1;
+  }
+  80% { /* Hold */
+    transform: translateX(0);
+    opacity: 1;
+  }
+  90% { /* Exit */
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.text-line-2 {
+  will-change: transform, opacity;
+  animation: textLine2Loop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Accent Square - Grow upward (scaleY) */
+@keyframes accentSquareLoop {
+  0%, 10% { /* Wait 0.5s */
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  22% { /* Arrive at 1.1s */
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  80% { /* Hold */
+    transform: scaleY(1);
+    opacity: 1;
+  }
+  90% { /* Exit */
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+.accent-square {
+  will-change: transform, opacity;
+  transform-origin: bottom center;
+  animation: accentSquareLoop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Footer Line - Float up from bottom */
+@keyframes footerLineLoop {
+  0%, 16% { /* Wait 0.8s */
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  26% { /* Arrive at 1.3s */
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% { /* Hold */
+    transform: translateY(0);
+    opacity: 1;
+  }
+  92% { /* Exit */
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+.footer-line {
+  will-change: transform, opacity;
+  animation: footerLineLoop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* Footer Circle - Float up + Pop */
+@keyframes footerCircleLoop {
+  0%, 18% {
+    transform: translateY(20px) scale(0);
+    opacity: 0;
+  }
+  26% {
+    transform: translateY(0) scale(1.2);
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  92% {
+    transform: translateY(20px) scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(20px) scale(0);
+    opacity: 0;
+  }
+}
+
+.footer-circle {
+  will-change: transform, opacity;
+  animation: footerCircleLoop 5s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+/* --- Floating Geometric Shapes (Visual Identity Background) --- */
+
+/* Large Hollow Circle - Slow orbit/float */
+@keyframes floatCircle {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-15px, 10px) rotate(90deg);
+  }
+  50% {
+    transform: translate(-5px, 20px) rotate(180deg);
+  }
+  75% {
+    transform: translate(10px, 5px) rotate(270deg);
+  }
+}
+
+.floating-circle {
+  will-change: transform;
+  animation: floatCircle 12s ease-in-out infinite;
+}
+
+/* Solid Black Triangle - Slow rotation + subtle drift */
+@keyframes floatTriangle {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(10px, -15px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-10px, 10px) rotate(240deg);
+  }
+}
+
+.floating-triangle {
+  will-change: transform;
+  animation: floatTriangle 15s ease-in-out infinite;
+}
+
+/* Plus Grid - Slow pulsing scale + subtle rotation */
+@keyframes floatPlusGrid {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.5;
+  }
+}
+
+.floating-plus-grid {
+  will-change: transform, opacity;
+  animation: floatPlusGrid 8s ease-in-out infinite;
+}
+
+/* --- Cyan Glow Effect for Hero Cards --- */
+.hero-card-glow {
+  box-shadow: 0 0 20px rgba(0, 194, 255, 0.3), 0 0 40px rgba(0, 194, 255, 0.1);
+}
