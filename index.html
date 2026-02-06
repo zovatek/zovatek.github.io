@@ -46,11 +46,34 @@
       },
     }
   </script>
+  
+  <!-- Mobile Performance Optimization -->
+  <style>
+    /* Force GPU Acceleration for iOS/Android to kill lag */
+    .gpu-accelerated {
+      transform: translateZ(0);
+      will-change: transform;
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+    
+    /* Disable heavy animations on mobile for butter smooth performance */
+    @media (max-width: 767px) {
+      .mobile-scroll-freeze {
+        animation: none !important;
+      }
+      
+      /* Simplify typing animation on mobile to prevent layout thrashing */
+      .typing-url {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border">
-    <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-8 xl:px-12 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo -->
         <a href="#" class="flex items-center gap-2">
@@ -121,7 +144,7 @@
     <!-- WebGL Background -->
     <div id="hero-background" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></div>
     
-    <div class="relative z-10 max-w-6xl mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10 max-w-screen-2xl mx-auto px-6 lg:px-8 xl:px-12 w-full grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
       <div class="text-left">
         <h1 class="fade-in text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter text-obsidian leading-tight mb-6">
           Engineering the Future of Digital Experiences
@@ -152,7 +175,7 @@
     <!-- Dot Grid Background (matches Hero globe theme) -->
     <div class="absolute inset-0 opacity-[0.15]" style="background-image: radial-gradient(#050505 1px, transparent 1px); background-size: 24px 24px;"></div>
     
-    <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-8 xl:px-12 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
          
          <div class="max-w-xl">
@@ -187,7 +210,7 @@
 
   <!-- Services Section - Split-Row Z-Pattern -->
   <section id="services" class="py-24">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-8 xl:px-12">
       <!-- Section Header -->
       <div class="text-center mb-16">
         <span class="fade-in inline-block text-sm font-semibold text-cerulean uppercase tracking-wide mb-4">
@@ -253,13 +276,13 @@
           <!-- Left Column: Swiss Grid Composition -->
           <div class="bg-[#F4F5F7] border border-[#E5E7EB] rounded-3xl h-[400px] overflow-hidden order-2 lg:order-1">
             <div class="relative w-full h-full bg-[#F4F5F7] flex items-center justify-center overflow-hidden">
-              <!-- FLOATING SHAPES (Background Layer) -->
+              <!-- FLOATING SHAPES (Background Layer) - HIDDEN ON MOBILE FOR PERFORMANCE -->
               <!-- Large Hollow Circle - Top Right -->
-              <div class="floating-circle absolute top-8 right-12 w-24 h-24 rounded-full border-2 border-[#050505] opacity-40"></div>
+              <div class="floating-circle hidden md:block absolute top-8 right-12 w-24 h-24 rounded-full border-2 border-[#050505] opacity-40"></div>
               <!-- Solid Black Triangle -->
-              <div class="floating-triangle absolute top-1/2 left-1/3 w-16 h-16 bg-[#050505] opacity-50" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+              <div class="floating-triangle hidden md:block absolute top-1/2 left-1/3 w-16 h-16 bg-[#050505] opacity-50" style="clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
               <!-- Plus Sign Grid - Bottom Left -->
-              <div class="floating-plus-grid absolute bottom-12 left-10 grid grid-cols-3 gap-2 opacity-30">
+              <div class="floating-plus-grid hidden md:block absolute bottom-12 left-10 grid grid-cols-3 gap-2 opacity-30">
                 <span class="text-[#050505] text-lg font-bold">+</span>
                 <span class="text-[#050505] text-lg font-bold">+</span>
                 <span class="text-[#050505] text-lg font-bold">+</span>
@@ -272,32 +295,32 @@
               </div>
               
               <!-- Brand Poster Canvas -->
-              <div class="relative w-48 h-64 bg-[#FFFFFF] shadow-2xl p-5 flex flex-col justify-between overflow-hidden poster-container z-10">
+              <div class="relative w-48 h-64 bg-[#FFFFFF] shadow-2xl p-5 flex flex-col justify-between overflow-hidden poster-container z-10 gpu-accelerated">
                 <!-- Dot Grid Background -->
                 <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#050505 1px, transparent 1px); background-size: 8px 8px;"></div>
                 
                 <!-- Header Bar - Black -->
-                <div class="header-bar w-full h-8 bg-[#050505] z-10 will-change-transform"></div>
+                <div class="header-bar w-full h-8 bg-[#050505] z-10 gpu-accelerated"></div>
 
                 <!-- Main Content Area -->
                 <div class="flex gap-3 h-24 z-10">
                    <!-- Cyan Hero Block -->
-                   <div class="hero-block w-2/3 h-full bg-[#00C2FF] will-change-transform"></div>
+                   <div class="hero-block w-2/3 h-full bg-[#00C2FF] gpu-accelerated"></div>
                    
                    <!-- Right Side Elements -->
                    <div class="w-1/3 flex flex-col justify-end gap-1">
                       <!-- Text Lines -->
-                      <div class="text-line-1 h-2 w-full bg-[#E5E7EB] will-change-transform"></div>
-                      <div class="text-line-2 h-2 w-2/3 bg-[#E5E7EB] will-change-transform"></div>
+                      <div class="text-line-1 h-2 w-full bg-[#E5E7EB] gpu-accelerated"></div>
+                      <div class="text-line-2 h-2 w-2/3 bg-[#E5E7EB] gpu-accelerated"></div>
                       <!-- Accent Square - Black -->
-                      <div class="accent-square h-8 w-full bg-[#050505] mt-auto will-change-transform"></div>
+                      <div class="accent-square h-8 w-full bg-[#050505] mt-auto gpu-accelerated"></div>
                    </div>
                 </div>
 
                 <!-- Footer Elements -->
                 <div class="flex justify-between items-end z-10">
-                   <div class="footer-line h-3 w-12 bg-[#E5E7EB] will-change-transform"></div>
-                   <div class="footer-circle h-6 w-6 rounded-full border-2 border-[#050505] will-change-transform"></div>
+                   <div class="footer-line h-3 w-12 bg-[#E5E7EB] gpu-accelerated"></div>
+                   <div class="footer-circle h-6 w-6 rounded-full border-2 border-[#050505] gpu-accelerated"></div>
                 </div>
               </div>
             </div>
@@ -337,7 +360,7 @@
             <div class="relative w-full h-full bg-[#F4F5F7] overflow-hidden flex justify-center gap-4 px-8">
               <div class="absolute inset-0 z-10 bg-gradient-to-b from-[#F4F5F7] via-transparent to-[#F4F5F7] pointer-events-none"></div>
 
-              <div class="flex flex-col gap-4 w-1/2" style="animation: scrollUp 20s linear infinite;">
+              <div class="flex flex-col gap-4 w-1/2 gpu-accelerated mobile-scroll-freeze" style="animation: scrollUp 20s linear infinite;">
                 <div class="bg-[#FFFFFF] p-3 rounded-xl shadow-sm border border-[#E5E7EB]">
                    <div class="h-24 bg-[#F4F5F7] rounded-lg mb-2"></div>
                    <div class="h-2 bg-[#E5E7EB] w-1/2 rounded"></div>
@@ -360,7 +383,7 @@
                 </div>
               </div>
 
-              <div class="flex flex-col gap-4 w-1/2 mt-12" style="animation: scrollUp 15s linear infinite;">
+              <div class="flex flex-col gap-4 w-1/2 mt-12 gpu-accelerated mobile-scroll-freeze" style="animation: scrollUp 15s linear infinite;">
                 <div class="bg-[#FFFFFF] p-3 rounded-xl shadow-sm border border-[#E5E7EB]">
                    <div class="h-28 bg-[#F4F5F7] rounded-lg mb-2"></div>
                    <div class="h-2 bg-[#E5E7EB] w-1/2 rounded"></div>
@@ -388,7 +411,7 @@
 
   <!-- CTA Section -->
   <section class="py-24 bg-surface">
-    <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="max-w-screen-xl mx-auto px-6 lg:px-8 xl:px-12 text-center">
       <h2 class="fade-in text-4xl sm:text-5xl font-extrabold tracking-tighter text-obsidian mb-6">
         Ready to Build Something Great?
       </h2>
@@ -403,7 +426,7 @@
 
   <!-- Footer - Apple Style -->
   <footer id="contact" class="bg-white border-t border-gray-100 pt-16 pb-8">
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-screen-2xl mx-auto px-6 lg:px-8 xl:px-12">
       
       <!-- Top Row: Logo & Contact -->
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
