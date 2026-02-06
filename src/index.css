@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans bg-background text-neutral antialiased;
+  }
+}
+
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply bg-obsidian text-white transition-all duration-300;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-cerulean -translate-y-0.5;
+  }
+  
+  /* Navigation Links */
+  .nav-link {
+    @apply text-neutral hover:text-obsidian transition-colors duration-200;
+  }
+  
+  /* Logo Sizing */
+  .logo-image {
+    @apply h-6 w-auto;
+  }
+  
+  /* GPU Acceleration for Performance */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Card Hover Effect */
+  .hero-card-glow {
+    @apply relative;
+  }
+  
+  .hero-card-glow::before {
+    content: '';
+    @apply absolute -inset-0.5 bg-gradient-to-r from-cerulean/20 to-cerulean/10 rounded-xl blur-sm opacity-0 transition-opacity duration-300;
+  }
+  
+  .hero-card-glow:hover::before {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  /* Disable animations on mobile for performance */
+  @media (max-width: 767px) {
+    .mobile-scroll-freeze {
+      animation: none !important;
+    }
+    
+    .typing-url {
+      animation: none !important;
+      width: auto !important;
+      border-right: none !important;
+    }
+  }
+  
+  /* Custom scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-neutral/20 rounded-full;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral/40;
+  }
+}
