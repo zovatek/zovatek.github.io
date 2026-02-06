@@ -60,16 +60,10 @@
 }
 
 @layer utilities {
-  /* Disable animations on mobile for performance */
+  /* Disable scroll animations on mobile for performance (but keep typing) */
   @media (max-width: 767px) {
     .mobile-scroll-freeze {
       animation: none !important;
-    }
-    
-    .typing-url {
-      animation: none !important;
-      width: auto !important;
-      border-right: none !important;
     }
   }
   

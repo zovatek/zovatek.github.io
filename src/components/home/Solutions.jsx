@@ -175,10 +175,10 @@ const BrowserMockup = () => {
             <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
             <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-            <div className="ml-4 flex-1 bg-white rounded px-3 py-1 text-[10px] sm:text-xs text-obsidian border border-border shadow-sm font-mono overflow-hidden">
-              <span className="md:animate-typing whitespace-nowrap overflow-hidden block">
+            <div className="ml-4 flex-1 bg-white rounded px-3 py-1 border border-border shadow-sm overflow-hidden">
+              <div className="font-mono text-[10px] sm:text-xs text-obsidian whitespace-nowrap overflow-hidden border-r-2 border-cerulean w-fit animate-typing">
                 zovatek.com/growth
-              </span>
+              </div>
             </div>
           </div>
           {/* Browser Content */}
@@ -382,19 +382,19 @@ const PortfolioScrollMockup = () => {
   ]
 
   return (
-    <div className="bg-surface border border-border rounded-3xl h-[400px] overflow-hidden">
-      <div className="relative w-full h-full bg-surface overflow-hidden flex justify-center gap-4 px-8">
+    <div className="bg-surface border border-border rounded-3xl h-[300px] sm:h-[400px] overflow-hidden">
+      <div className="relative w-full h-full bg-surface overflow-hidden flex justify-center gap-4 px-4 sm:px-8">
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-surface via-transparent to-surface pointer-events-none" />
 
         {/* First Column */}
-        <div className="flex flex-col gap-4 w-1/2 md:animate-scrollUp mobile-scroll-freeze gpu-accelerated">
+        <div className="flex flex-col gap-4 w-1/2 animate-scrollUp [animation-duration:30s] sm:[animation-duration:20s] gpu-accelerated">
           {[...portfolioItems1, ...portfolioItems1].map((item, idx) => (
             <PortfolioCard key={idx} height={item.height} featured={item.featured} />
           ))}
         </div>
 
         {/* Second Column */}
-        <div className="flex flex-col gap-4 w-1/2 mt-12 md:animate-scrollUpSlow mobile-scroll-freeze gpu-accelerated">
+        <div className="flex flex-col gap-4 w-1/2 mt-12 animate-scrollUpSlow [animation-duration:25s] sm:[animation-duration:15s] gpu-accelerated">
           {[...portfolioItems2, ...portfolioItems2].map((item, idx) => (
             <PortfolioCard key={idx} height={item.height} featured={item.featured} />
           ))}
