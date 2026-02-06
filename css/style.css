@@ -92,6 +92,13 @@ body {
   50% { transform: translateY(-20px) rotate(5deg); }
 }
 
+/* Slow down float animation on mobile to reduce CPU load */
+@media (max-width: 767px) {
+  .floating-shape {
+    animation-duration: 10s;
+  }
+}
+
 .floating-shape-2 {
   animation-delay: -3s;
 }
