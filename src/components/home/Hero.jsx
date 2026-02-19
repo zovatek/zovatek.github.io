@@ -65,13 +65,13 @@ const Hero = () => {
       requestAnimationFrame(animate)
       // Reduce animation speed on mobile for smoother experience
       if (isMobile) {
-        globe.rotation.y += 0.00008;
-        globe.rotation.x += 0.00004;
-        points.rotation.y -= 0.00004;
+        globe.rotation.y += 0.00002;
+        globe.rotation.x += 0.00001;
+        points.rotation.y -= 0.00001;
       } else {
-        globe.rotation.y += 0.0002;
-        globe.rotation.x += 0.0001;
-        points.rotation.y -= 0.0001;
+        globe.rotation.y += 0.00005;
+        globe.rotation.x += 0.000025;
+        points.rotation.y -= 0.000025;
       }
       renderer.render(scene, camera)
     }
