@@ -25,7 +25,10 @@ const Hero = () => {
     container.appendChild(renderer.domElement)
 
     // Create Globe
-    const geometry = new THREE.SphereGeometry(1.5, 64, 64)
+    // Use lower geometry detail on mobile for performance
+    const isMobile = window.innerWidth < 768;
+    const sphereSegments = isMobile ? 24 : 64;
+    const geometry = new THREE.SphereGeometry(1.5, sphereSegments, sphereSegments)
     const material = new THREE.MeshBasicMaterial({
       color: 0x00b5e2,
       wireframe: true,
@@ -37,7 +40,7 @@ const Hero = () => {
 
     // Add Points
     const pointsGeometry = new THREE.BufferGeometry()
-    const pointsCount = 1500
+    const pointsCount = isMobile ? 400 : 1500
     const positions = new Float32Array(pointsCount * 3)
 
     for (let i = 0; i < pointsCount * 3; i++) {
@@ -57,9 +60,16 @@ const Hero = () => {
     // Animation
     const animate = () => {
       requestAnimationFrame(animate)
-      globe.rotation.y += 0.01
-      globe.rotation.x += 0.005
-      points.rotation.y -= 0.005
+      // Reduce animation speed on mobile for smoother experience
+      if (isMobile) {
+        globe.rotation.y += 0.003;
+        globe.rotation.x += 0.0015;
+        points.rotation.y -= 0.0015;
+      } else {
+        globe.rotation.y += 0.01;
+        globe.rotation.x += 0.005;
+        points.rotation.y -= 0.005;
+      }
       renderer.render(scene, camera)
     }
     animate()
