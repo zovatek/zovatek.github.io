@@ -57,9 +57,9 @@ const Hero = () => {
     // Animation
     const animate = () => {
       requestAnimationFrame(animate)
-      globe.rotation.y += 0.001
-      globe.rotation.x += 0.0005
-      points.rotation.y -= 0.0005
+      globe.rotation.y += 0.01
+      globe.rotation.x += 0.005
+      points.rotation.y -= 0.005
       renderer.render(scene, camera)
     }
     animate()

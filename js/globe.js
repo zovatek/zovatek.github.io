@@ -39,7 +39,7 @@ const GLOBE_CONFIG = {
   wireframeOpacity: 0.05,    // Very faint lines connecting the dots
   
   // Animation
-  autoRotateSpeed: 0.002,    // Slow cinematic rotation
+  autoRotateSpeed: 0.02,    // 10x faster rotation
   
   // Interaction
   dampingFactor: 0.95,       // Momentum decay

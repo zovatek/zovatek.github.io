@@ -18,13 +18,13 @@ export default {
         border: '#E5E7EB',
       },
       animation: {
-        'typing': 'typeLoop 6s steps(21) infinite, blinkCursor 0.8s step-end infinite',
-        'scrollUp': 'scrollUp 20s linear infinite',
-        'scrollUpSlow': 'scrollUp 15s linear infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'floatCircle': 'floatCircle 8s ease-in-out infinite',
-        'floatTriangle': 'floatTriangle 10s ease-in-out infinite',
-        'floatPlusGrid': 'floatPlusGrid 12s ease-in-out infinite',
+        'typing': 'typeLoop 0.6s steps(21) infinite, blinkCursor 0.08s step-end infinite',
+        'scrollUp': 'scrollUp 2s linear infinite',
+        'scrollUpSlow': 'scrollUp 1.5s linear infinite',
+        'float': 'float 0.6s ease-in-out infinite',
+        'floatCircle': 'floatCircle 0.8s ease-in-out infinite',
+        'floatTriangle': 'floatTriangle 1s ease-in-out infinite',
+        'floatPlusGrid': 'floatPlusGrid 1.2s ease-in-out infinite',
       },
       keyframes: {
         typeLoop: {
