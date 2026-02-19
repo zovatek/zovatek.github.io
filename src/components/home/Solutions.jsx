@@ -241,7 +241,7 @@ const VisualIdentityMockup = () => {
             x: [0, 10, 0],
             rotate: [0, 90, 180, 270, 360]
           }}
-            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div 
           className="hidden md:block absolute top-1/2 left-1/3 w-16 h-16 bg-obsidian opacity-50"
@@ -251,7 +251,7 @@ const VisualIdentityMockup = () => {
             x: [0, -20, 0],
             rotate: [0, 120, 240, 360]
           }}
-            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div 
           className="hidden md:block absolute bottom-12 left-10 grid grid-cols-3 gap-2 opacity-30"
@@ -260,7 +260,7 @@ const VisualIdentityMockup = () => {
             x: [0, 10, 0],
             scale: [1, 1.1, 1]
           }}
-            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         >
           {Array(9).fill(null).map((_, i) => (
             <span key={i} className="text-obsidian text-lg font-bold">+</span>
