@@ -35,7 +35,7 @@ const Solutions = () => {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.2 }}
         >
           <span className="inline-block text-sm font-semibold text-cerulean uppercase tracking-wide mb-4">
             What We Do
@@ -62,27 +62,27 @@ const Solutions = () => {
             className="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
             variants={cardVariants}
           >
-            {/* Left Column: Text */}
-            <div>
-              <h3 className="text-3xl sm:text-4xl font-bold text-obsidian mb-6">
-                Web Development
-              </h3>
-              <p className="text-neutral leading-relaxed text-lg mb-8">
-                We build fast, scalable, and beautifully designed websites and web applications. From marketing sites to complex SaaS platforms, our engineering-first approach ensures your digital product performs flawlessly.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['React', 'JavaScript', 'Node.js'].map((tech) => (
-                  <motion.span 
-                    key={tech}
-                    className="px-4 py-2 text-sm font-medium text-neutral bg-surface rounded-full border border-border"
-                    whileHover={{ scale: 1.05, borderColor: '#00B5E2' }}
-                    transition={{ type: 'spring', stiffness: 400 }}
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
+              {/* Left Column: Text */}
+              <div>
+                <h3 className="text-3xl sm:text-4xl font-bold text-obsidian mb-6">
+                  Web Development
+                </h3>
+                <p className="text-neutral leading-relaxed text-lg mb-8">
+                  We build fast, scalable, and beautifully designed websites and web applications. From marketing sites to complex SaaS platforms, our engineering-first approach ensures your digital product performs flawlessly.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {['React', 'JavaScript', 'Node.js'].map((tech) => (
+                    <motion.span 
+                      key={tech}
+                      className="px-4 py-2 text-sm font-medium text-neutral bg-surface rounded-full border border-border"
+                      whileHover={{ scale: 1.05, borderColor: '#00B5E2' }}
+                      transition={{ type: 'spring', stiffness: 400, duration: 0.2 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
               </div>
-            </div>
             
             {/* Right Column: Browser Window Visual */}
             <BrowserMockup />
@@ -241,11 +241,7 @@ const VisualIdentityMockup = () => {
             x: [0, 10, 0],
             rotate: [0, 90, 180, 270, 360]
           }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
+            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div 
           className="hidden md:block absolute top-1/2 left-1/3 w-16 h-16 bg-obsidian opacity-50"
@@ -255,11 +251,7 @@ const VisualIdentityMockup = () => {
             x: [0, -20, 0],
             rotate: [0, 120, 240, 360]
           }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
+            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div 
           className="hidden md:block absolute bottom-12 left-10 grid grid-cols-3 gap-2 opacity-30"
@@ -268,11 +260,7 @@ const VisualIdentityMockup = () => {
             x: [0, 10, 0],
             scale: [1, 1.1, 1]
           }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
+            transition={{ duration: 0.2, repeat: Infinity, ease: 'easeInOut' }}
         >
           {Array(9).fill(null).map((_, i) => (
             <span key={i} className="text-obsidian text-lg font-bold">+</span>
