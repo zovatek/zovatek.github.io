@@ -19,10 +19,13 @@ const Hero = () => {
     )
     camera.position.z = 5
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
-    renderer.setSize(container.clientWidth, container.clientHeight)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    container.appendChild(renderer.domElement)
+    // On mobile, disable antialias and lower pixel ratio for performance
+    const renderer = isMobile
+      ? new THREE.WebGLRenderer({ alpha: true, antialias: false })
+      : new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
+    container.appendChild(renderer.domElement);
 
     // Create Globe
     // Use lower geometry detail on mobile for performance
@@ -50,7 +53,7 @@ const Hero = () => {
     pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     const pointsMaterial = new THREE.PointsMaterial({
       color: 0x00b5e2,
-      size: 0.02,
+      size: isMobile ? 0.012 : 0.02,
       transparent: true,
       opacity: 0.6,
     })
