@@ -19,19 +19,13 @@ const Hero = () => {
     )
     camera.position.z = 5
 
-    // On mobile, disable antialias and lower pixel ratio for performance
-    const renderer = isMobile
-      ? new THREE.WebGLRenderer({ alpha: true, antialias: false })
-      : new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(isMobile ? 1 : Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+    renderer.setSize(container.clientWidth, container.clientHeight)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    container.appendChild(renderer.domElement)
 
     // Create Globe
-    // Use lower geometry detail on mobile for performance
-    const isMobile = window.innerWidth < 768;
-    const sphereSegments = isMobile ? 24 : 64;
-    const geometry = new THREE.SphereGeometry(1.5, sphereSegments, sphereSegments)
+    const geometry = new THREE.SphereGeometry(1.5, 64, 64)
     const material = new THREE.MeshBasicMaterial({
       color: 0x00b5e2,
       wireframe: true,
@@ -43,7 +37,7 @@ const Hero = () => {
 
     // Add Points
     const pointsGeometry = new THREE.BufferGeometry()
-    const pointsCount = isMobile ? 400 : 1500
+    const pointsCount = 1500
     const positions = new Float32Array(pointsCount * 3)
 
     for (let i = 0; i < pointsCount * 3; i++) {
@@ -53,7 +47,7 @@ const Hero = () => {
     pointsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     const pointsMaterial = new THREE.PointsMaterial({
       color: 0x00b5e2,
-      size: isMobile ? 0.012 : 0.02,
+      size: 0.02,
       transparent: true,
       opacity: 0.6,
     })
@@ -63,16 +57,9 @@ const Hero = () => {
     // Animation
     const animate = () => {
       requestAnimationFrame(animate)
-      // Reduce animation speed on mobile for smoother experience
-      if (isMobile) {
-        globe.rotation.y += 0.00002;
-        globe.rotation.x += 0.00001;
-        points.rotation.y -= 0.00001;
-      } else {
-        globe.rotation.y += 0.00005;
-        globe.rotation.x += 0.000025;
-        points.rotation.y -= 0.000025;
-      }
+      globe.rotation.y += 0.001
+      globe.rotation.x += 0.0005
+      points.rotation.y -= 0.0005
       renderer.render(scene, camera)
     }
     animate()
